@@ -220,7 +220,7 @@ Section ExtendedBoojumScheme.
         rewrite <- xor_assoc.  (* M i = h (O 1 i) ⊕ (M i ⊕ h (O 1 i)) *)
         rewrite xor_comm.      (* M i = h (O 1 i) ⊕ (h (O 1 i) ⊕ M i) *)
         rewrite <- xor_assoc.  (* M i = (h (O 1 i) ⊕ h (O 1 i)) ⊕ M i *)
-        rewrite xor_cancel.    (* M i = zero_key ⊕ M i *)
+        rewrite xor_cancel.    (* M i = M i ⊕ zero_key *)
         rewrite xor_identity. (* Use the helper lemma: M i = M i *)
         reflexivity. (* Goal is M i = M i *)
       + (* Case n = S n'' >= 2 (n' = S n'' >= 1): *)
