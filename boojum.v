@@ -155,18 +155,6 @@ Section ExtendedBoojumScheme.
   Context {R : nat -> Index -> Key}. (* Partitioned random bytes R_{n,i}. *)
 
   (* -------------------------------------------------------------------------- *)
-  (* Helper Lemma                                                               *)
-  (* -------------------------------------------------------------------------- *)
-
-  (* Helper Lemma: Prove zero_key is also the left identity for XOR. *)
-  Lemma xor_identity_left : forall (a : Key), zero_key ⊕ a = a.
-  Proof.
-    intros a.
-    rewrite xor_comm. (* Rewrite zero_key ⊕ a to a ⊕ zero_key *)
-    apply xor_identity. (* Apply the right identity axiom: a ⊕ zero_key = a *)
-  Qed.
-
-  (* -------------------------------------------------------------------------- *)
   (* State Definitions (Recursive)                                              *)
   (* -------------------------------------------------------------------------- *)
 
@@ -221,7 +209,7 @@ Section ExtendedBoojumScheme.
         rewrite xor_comm.      (* M i = h (O 1 i) ⊕ (h (O 1 i) ⊕ M i) *)
         rewrite <- xor_assoc.  (* M i = (h (O 1 i) ⊕ h (O 1 i)) ⊕ M i *)
         rewrite xor_cancel.    (* M i = M i ⊕ zero_key *)
-        rewrite xor_identity. (* Use the helper lemma: M i = M i *)
+        rewrite xor_identity. 
         reflexivity. (* Goal is M i = M i *)
       + (* Case n = S n'' >= 2 (n' = S n'' >= 1): *)
         (* We have the inductive hypothesis for n' = S n'' *)
